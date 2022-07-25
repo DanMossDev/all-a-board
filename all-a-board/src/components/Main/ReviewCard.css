@@ -1,0 +1,17 @@
+.review-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.review-card img {
+    width:25vw;
+    height:25vw;
+    object-fit:cover;
+}
+
+.review-card div {
+    text-align: right;
+    font-size: 0.75rem;
+}
