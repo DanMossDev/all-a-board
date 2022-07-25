@@ -1,6 +1,6 @@
 import './Main.css'
 import {useState, useEffect} from 'react'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { getCategories, getReviews } from '../../axios'
 import ReviewCard from './ReviewCard'
 import ReviewPage from './ReviewPage'
@@ -11,12 +11,14 @@ export default function Main({currentPage}) {
     const [sortBy, setSortBy] = useState()
     const [order, setOrder] = useState()
     const [categories, setCategories] = useState([])
-    const navigate = useNavigate()
 
     const {category} = useParams()
 
     useEffect(() => {
-        getCategories().then(({data}) => setCategories(data))
+        getCategories().then(({data}) => {
+            data.unshift('All')
+            setCategories(data)
+        })
     }, [])
   
     useEffect(() => {
@@ -29,7 +31,7 @@ export default function Main({currentPage}) {
         <nav>
             <ul>
                 {categories.map((category) => {
-                    return <li key={category.slug} value={category.slug}><Link to={`${category.slug}`} replace>{category.slug}</Link></li>
+                    return <li key={`${category.slug}-1`} value={category.slug}><Link to={`../${category.slug}`} replace>{category.slug}</Link></li>
                 })}
             </ul>
         </nav>
