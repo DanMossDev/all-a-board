@@ -7,6 +7,7 @@ export default function VoteBox({currentVotes, review_id}) {
     function handleVote(inc_votes) {
         setVotes(votes + inc_votes)
         reviewVote(review_id, inc_votes)
+        .catch(err => setVotes(votes - inc_votes))
     }
 
     return <section className="vote">
