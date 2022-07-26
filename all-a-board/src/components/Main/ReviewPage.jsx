@@ -18,16 +18,6 @@ export default function ReviewPage() {
         getReview(review_id)
         .then(({data}) => setReview(data))
         .catch(err => setIsErr(err))
-
-        getComments(review_id)
-        .then(({data}) => {
-            setComments(data.comments)
-            setIsLoading(false)
-        })
-        .catch(err => {
-            setIsErr(err)
-            setIsLoading(false)
-        })
     }, [])
 
     useEffect(() => {
