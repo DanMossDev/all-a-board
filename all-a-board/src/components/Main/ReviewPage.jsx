@@ -1,14 +1,32 @@
-import './ReviewPage.css'
+import './ReviewPage.css';
 import ReviewCard from "./ReviewCard";
 import VoteBox from './VoteBox';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getReview } from '../../axios';
 
-export default function ReviewPage({selectedReview}) {
-    return <div className="individual-card">
-    <ReviewCard key={selectedReview.review_id} title={selectedReview.title} imageURL={selectedReview.review_img_url} category={selectedReview.category} author={selectedReview.owner}>
-        <VoteBox currentVotes={selectedReview.votes} review_id={selectedReview.review_id}/>
-    </ReviewCard>
-    <article>
-        {selectedReview.review_body}
-    </article>
-    </div>
+export default function ReviewPage() {
+    const [review, setReview] = useState()
+    const [isErr, setIsErr] = useState(false)
+    const {review_id} = useParams()
+
+    useEffect(() => {
+        getReview(review_id)
+        .then(({data}) => setReview(data))
+        .catch(err => setIsErr(err))
+    }, [])
+
+
+    return <main> { isErr ? <h2>{isErr.response.data.msg}</h2> :
+        review &&
+        <div className="individual-card">
+        <ReviewCard key={review.review_id} title={review.title} imageURL={review.review_img_url} category={review.category} author={review.owner}>
+            <VoteBox currentVotes={review.votes} review_id={review.review_id}/>
+        </ReviewCard>
+        <article>
+            {review.review_body}
+        </article>
+        </div>
+        }
+    </main>
 }
