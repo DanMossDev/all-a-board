@@ -5,7 +5,7 @@ import { getCategories, getReviews } from '../../axios'
 import ReviewCard from './ReviewCard'
 import NavBar from './NavBar'
 
-export default function Main({currentPage, selectedReview, setSelectedReview}) {
+export default function Main({currentPage}) {
     const [reviews, setReviews] = useState([])
     const [sortBy, setSortBy] = useState()
     const [order, setOrder] = useState()
@@ -35,7 +35,7 @@ export default function Main({currentPage, selectedReview, setSelectedReview}) {
         
         <section>
             {reviews.map(review => {
-                return <ReviewCard review={review} setSelectedReview={setSelectedReview} key={review.review_id} title={review.title} imageURL={review.review_img_url} category={review.category} author={review.owner}/>
+                return <ReviewCard review={review} key={review.review_id} title={review.title} imageURL={review.review_img_url} category={review.category} isSelector={true} author={review.owner}/>
             })}
         </section>  
     </main>
