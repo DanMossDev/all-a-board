@@ -1,0 +1,28 @@
+.comment-button {
+    width: 100px;
+}
+
+.comment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+.comment div p {
+    text-align: center !important;
+}
+
+@media screen and (min-width: 1200px) {
+    .comment {
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .comment {
+        width: 60%;
+    }
+}

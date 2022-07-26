@@ -33,7 +33,7 @@ export default function Main({currentPage}) {
             </NavBar>
         </nav>
         
-        <section>
+        <section className="reviews-section">
             {reviews.map(review => {
                 return <ReviewCard review={review} key={review.review_id} title={review.title} imageURL={review.review_img_url} category={review.category} isSelector={true} author={review.owner}/>
             })}

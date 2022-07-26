@@ -1,13 +1,19 @@
 import './VoteBox.css'
 import { useState } from "react";
-import { reviewVote } from '../../axios'
-export default function VoteBox({currentVotes, review_id}) {
+import { reviewVote, commentVote } from '../../axios'
+
+export default function VoteBox({currentVotes, review_id, comment_id}) {
     const [votes, setVotes] = useState(currentVotes)
 
     function handleVote(inc_votes) {
         setVotes(votes + inc_votes)
-        reviewVote(review_id, inc_votes)
-        .catch(err => setVotes(votes - inc_votes))
+        if (!comment_id) {
+            reviewVote(review_id, inc_votes)
+            .catch(err => setVotes(votes - inc_votes))
+        } else {
+            commentVote(comment_id, inc_votes)
+            .catch(err => setVotes(votes - inc_votes))
+        }
     }
 
     return <section className="vote">
