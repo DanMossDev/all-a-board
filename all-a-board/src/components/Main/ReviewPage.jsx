@@ -6,17 +6,18 @@ import { getReview } from '../../axios';
 
 export default function ReviewPage() {
     const [review, setReview] = useState()
+    const [isErr, setIsErr] = useState(false)
     const {review_id} = useParams()
 
     useEffect(() => {
         getReview(review_id)
         .then(({data}) => setReview(data))
-        .catch(err => console.log(err))
-    })
+        .catch(err => setIsErr(err))
+    }, [])
 
 
-    return <main>
-        { review &&
+    return <main> { isErr ? <h2>{isErr.response.data.msg}</h2> :
+        review &&
         <div className="individual-card">
         <ReviewCard key={review.review_id} title={review.title} imageURL={review.review_img_url} category={review.category} author={review.owner}/>
         <article>
