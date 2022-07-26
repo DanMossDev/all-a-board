@@ -1,5 +1,6 @@
 import './ReviewPage.css';
 import ReviewCard from "./ReviewCard";
+import VoteBox from './VoteBox';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getReview } from '../../axios';
@@ -19,7 +20,9 @@ export default function ReviewPage() {
     return <main> { isErr ? <h2>{isErr.response.data.msg}</h2> :
         review &&
         <div className="individual-card">
-        <ReviewCard key={review.review_id} title={review.title} imageURL={review.review_img_url} category={review.category} author={review.owner}/>
+        <ReviewCard key={review.review_id} title={review.title} imageURL={review.review_img_url} category={review.category} author={review.owner}>
+            <VoteBox currentVotes={review.votes} review_id={review.review_id}/>
+        </ReviewCard>
         <article>
             {review.review_body}
         </article>
