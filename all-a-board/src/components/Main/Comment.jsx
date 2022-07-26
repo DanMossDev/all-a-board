@@ -10,6 +10,6 @@ export default function Comment({comment, review_id}) {
             <p>{body}</p>
         </div>
         
-        <VoteBox currentVotes={votes} review_id={review_id} comment_id={comment_id}/>
+        <VoteBox currentVotes={votes} review_id={review_id} id={comment_id} target="comments"/>
     </div>
 }

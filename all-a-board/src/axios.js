@@ -20,12 +20,8 @@ export function getReviews(currentPage, category, sort_by, order) {
     })
 }
 
-export function reviewVote(review_id, vote) {
-    return api.patch(`reviews/${review_id}`, {inc_votes: vote})
-}
-
-export function commentVote(comment_id, vote) {
-    return api.patch(`comments/${comment_id}`, {inc_votes: vote})
+export function updateVote(target, id, inc_votes) {
+    return api.patch(`${target}/${id}`, {inc_votes})
 }
 
 export function getReview(review_id) {
