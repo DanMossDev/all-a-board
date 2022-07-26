@@ -1,0 +1,13 @@
+article {
+    width: 90%;
+    margin: 1rem auto;
+}
+
+.individual-card {
+    margin-top: 1rem;
+}
+
+.individual-card div {
+    text-align: left;
+    margin-left: 1rem;
+}

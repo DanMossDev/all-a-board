@@ -1,22 +1,22 @@
 import './Main.css'
 import {useState, useEffect} from 'react'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useParams, Link, Navigate } from 'react-router-dom'
 import { getCategories, getReviews } from '../../axios'
 import ReviewCard from './ReviewCard'
-import ReviewPage from './ReviewPage'
+import NavBar from './NavBar'
 
 export default function Main({currentPage}) {
     const [reviews, setReviews] = useState([])
-    const [selectedReview, setSelectedReview] = useState()
     const [sortBy, setSortBy] = useState()
     const [order, setOrder] = useState()
     const [categories, setCategories] = useState([])
-    const navigate = useNavigate()
 
     const {category} = useParams()
 
     useEffect(() => {
-        getCategories().then(({data}) => setCategories(data))
+        getCategories().then(({data}) => {
+            setCategories(data)
+        })
     }, [])
   
     useEffect(() => {
@@ -24,24 +24,19 @@ export default function Main({currentPage}) {
     }, [currentPage, category, sortBy, order])
 
     return <main>
-        {!selectedReview ? 
-        <>
         <nav>
-            <ul>
+            <NavBar>
+                <li value=''><Link to={`../reviews`} replace>all</Link></li>
                 {categories.map((category) => {
-                    return <li key={category.slug} value={category.slug}><Link to={`${category.slug}`} replace>{category.slug}</Link></li>
+                    return <li key={`${category.slug}-1`} value={category.slug}><Link to={`../reviews/${category.slug}`} replace>{category.slug}</Link></li>
                 })}
-            </ul>
+            </NavBar>
         </nav>
         
         <section>
             {reviews.map(review => {
-                return <ReviewCard review={review} setSelectedReview={setSelectedReview} key={review.review_id} title={review.title} imageURL={review.review_img_url} category={review.category} author={review.owner}/>
+                return <ReviewCard review={review} key={review.review_id} title={review.title} imageURL={review.review_img_url} category={review.category} isSelector={true} author={review.owner}/>
             })}
-        </section>
-        </>
-        : <ReviewPage selectedReview={selectedReview}/>
-        }
-        
+        </section>  
     </main>
 }

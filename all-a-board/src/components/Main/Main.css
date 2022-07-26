@@ -1,6 +1,19 @@
+section {
+    padding-top: 1.5rem;
+}
+
+ul {
+    margin: 0;
+}
+
 nav ul {
     padding: 0;
     list-style: none;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
 }
 
 li a {

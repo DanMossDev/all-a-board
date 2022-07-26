@@ -16,3 +16,7 @@ export function getReviews(currentPage, category, sortBy, order) {
     
     return api.get(queryUrl)
 }
+
+export function getReview(review_id) {
+    return api.get(`reviews/${review_id}`)
+}
