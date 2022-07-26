@@ -16,19 +16,18 @@
     font-size: 1rem;
 }
 
-.vote {
-    margin: 0;
-    margin-left: 1rem;
+.details h2 {
+    text-align: right;
 }
 
 @media screen and (max-width: 600px) {
-    details {
+    .details {
         font-size: 0.55rem;
     }
 }
 
 @media screen and (max-width: 1200px) {
-    details {
+    .details {
         font-size: 0.75rem;
     }
 }
