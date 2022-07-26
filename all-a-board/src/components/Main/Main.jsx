@@ -10,12 +10,14 @@ export default function Main({currentPage}) {
     const [sortBy, setSortBy] = useState()
     const [order, setOrder] = useState()
     const [categories, setCategories] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     const {category} = useParams()
 
     useEffect(() => {
         getCategories().then(({data}) => {
             setCategories(data)
+            setIsLoading(false)
         })
     }, [])
   
@@ -23,7 +25,7 @@ export default function Main({currentPage}) {
         getReviews(currentPage, category, sortBy, order).then(({data}) => setReviews(data))
     }, [currentPage, category, sortBy, order])
 
-    return <main>
+    return !isLoading ? <main>
         <nav>
             <NavBar>
                 <li value=''><Link to={`../reviews`} replace>all</Link></li>
@@ -33,10 +35,13 @@ export default function Main({currentPage}) {
             </NavBar>
         </nav>
         
-        <section>
+        <section className="reviews-section">
             {reviews.map(review => {
                 return <ReviewCard review={review} key={review.review_id} title={review.title} imageURL={review.review_img_url} category={review.category} isSelector={true} author={review.owner}/>
             })}
         </section>  
-    </main>
+    </main> : <main><div id="preloader">
+        <div id="loader"></div>
+    </div></main>
+    
 }
