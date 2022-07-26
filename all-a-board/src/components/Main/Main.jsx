@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 import { getCategories, getReviews } from '../../axios'
 import ReviewCard from './ReviewCard'
 import ReviewPage from './ReviewPage'
+import NavBar from './NavBar'
 
 export default function Main({currentPage}) {
     const [reviews, setReviews] = useState([])
@@ -16,7 +17,6 @@ export default function Main({currentPage}) {
 
     useEffect(() => {
         getCategories().then(({data}) => {
-            data.unshift('All')
             setCategories(data)
         })
     }, [])
@@ -29,11 +29,12 @@ export default function Main({currentPage}) {
         {!selectedReview ? 
         <>
         <nav>
-            <ul>
+            <NavBar>
+                <li value=''><Link to={`../`} replace>all</Link></li>
                 {categories.map((category) => {
                     return <li key={`${category.slug}-1`} value={category.slug}><Link to={`../${category.slug}`} replace>{category.slug}</Link></li>
                 })}
-            </ul>
+            </NavBar>
         </nav>
         
         <section>
