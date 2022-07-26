@@ -1,7 +1,12 @@
+import { useNavigate } from 'react-router-dom'
 import './ReviewCard.css'
 
 export default function ReviewCard({title, imageURL, category, author, setSelectedReview, review}) {
-    return <div className="review-card" onClick={() => {setSelectedReview && setSelectedReview(review)}}>
+    const navigate = useNavigate()
+    return <div className="review-card" onClick={() => {setSelectedReview && 
+    setSelectedReview(review)
+    navigate(`/review/${review.review_id}`, {replace: true})
+    }}>
         <img src={imageURL}/>
         <div>
         <h2>{title}</h2>
