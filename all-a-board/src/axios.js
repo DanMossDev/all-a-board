@@ -16,3 +16,7 @@ export function getReviews(currentPage, category, sortBy, order) {
     
     return api.get(queryUrl)
 }
+
+export function reviewVote(review_id, vote) {
+    return api.patch(`reviews/${review_id}`, {inc_votes: vote})
+}
