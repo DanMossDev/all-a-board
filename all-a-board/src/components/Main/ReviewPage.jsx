@@ -16,7 +16,10 @@ export default function ReviewPage() {
 
     useEffect(() => {
         getReview(review_id)
-        .then(({data}) => setReview(data))
+        .then(({data}) => {
+            setReview(data)
+            setIsLoading(false)
+        })
         .catch(err => setIsErr(err))
     }, [])
 

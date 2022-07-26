@@ -4,6 +4,10 @@ const api = axios.create({
     baseURL: 'https://beegee-api.herokuapp.com/api/'
 })
 
+export function getUsers() {
+    return api.get('users')
+}
+
 export function getCategories() {
     return api.get('categories')
 }
