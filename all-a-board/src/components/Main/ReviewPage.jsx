@@ -58,7 +58,7 @@ export default function ReviewPage() {
                 <button className={isSendingComment ? "awaiting-response-button" : ''} type="submit">Comment</button>
             </form>
             <p>{commentErr}</p>
-            </>
+          </>
         }
         <button className="comment-button" onClick={() => setShowComments(!showComments)}>{showComments ? "Hide Comments" : "Show Comments"}</button>
     </main>
