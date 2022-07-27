@@ -27,6 +27,7 @@ export default function ReviewPage() {
         setIsSendingComment(true)
         postComment(newComment, review_id, user.username)
         .then(() => {
+            setNewComment('')
             setIsSendingComment(false)
         })
         .catch(err => {
@@ -35,7 +36,7 @@ export default function ReviewPage() {
         })
     }
 
-    return <main> { isLoading ? <main><div id="preloader"><div id="loader"></div></div></main>
+    return <><main> { isLoading ? <main><div id="preloader"><div id="loader"></div></div></main>
         : isErr ? <h2>{isErr.response.data.msg}</h2> 
         : !showComments ? review && //if it isn't loading, isn't in error, and isn't showing comments then load this
             <div className="individual-card">
@@ -53,13 +54,14 @@ export default function ReviewPage() {
                 })
                 : <h2>No comments! Will you be the first?</h2>}
             </section>
-            <form onSubmit={handleNewComment}>
-                <input className={isSendingComment ? "awaiting-response-input" : ''} value={newComment} onChange={e => setNewComment(e.target.value)} type="text"></input><br/>
-                <button className={isSendingComment ? "awaiting-response-button" : ''} type="submit">Comment</button>
+            <form className="comment-form" onSubmit={handleNewComment}>
+                <label htmlFor="comment-here">{commentErr ? commentErr : 'Enter Your Comment'}</label><br/>
+                <textarea className={isSendingComment ? "awaiting-response-input" : ''} value={newComment} onChange={e => setNewComment(e.target.value)} type="text"></textarea><br/>
+                <button className={'comment-button' + (isSendingComment ? "awaiting-response-button" : '')} type="submit">Comment</button>
             </form>
-            <p>{commentErr}</p>
           </>
         }
-        <button className="comment-button" onClick={() => setShowComments(!showComments)}>{showComments ? "Hide Comments" : "Show Comments"}</button>
     </main>
+    <footer><button className="comment-button" onClick={() => setShowComments(!showComments)}>{showComments ? "Hide Comments" : "Show Comments"}</button></footer>
+    </>
 }

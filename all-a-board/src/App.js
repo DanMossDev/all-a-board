@@ -22,12 +22,11 @@ function App() {
           <Header/>
           <Routes>
             <Route path='/' element={user ? <Navigate to='/reviews' replace/> : <Navigate to='/login' replace/>}/>
-            <Route path='/reviews' element={<Main currentPage={currentPage} setCurrentPage={setCurrentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview} setNumOfPages={setNumOfPages}/>}/>
-            <Route path='/reviews/:category' element={<Main currentPage={currentPage} setCurrentPage={setCurrentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview} setNumOfPages={setNumOfPages}/>}/>
+            <Route path='/reviews' element={<><Main currentPage={currentPage} setCurrentPage={setCurrentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview} setNumOfPages={setNumOfPages}/><Footer currentPage={currentPage} numOfPages={numOfPages} setCurrentPage={setCurrentPage}/></>}/>
+            <Route path='/reviews/:category' element={<><Main currentPage={currentPage} setCurrentPage={setCurrentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview} setNumOfPages={setNumOfPages}/><Footer currentPage={currentPage} numOfPages={numOfPages} setCurrentPage={setCurrentPage}/></>}/>
             <Route path='/review/:review_id' element={<ReviewPage selectedReview={selectedReview}/>}/>
             <Route path='/login' element={<Login />}/>
           </Routes>
-          <Footer currentPage={currentPage} numOfPages={numOfPages} setCurrentPage={setCurrentPage}/>
         </div>
       </UserContext.Provider>
     </BrowserRouter>

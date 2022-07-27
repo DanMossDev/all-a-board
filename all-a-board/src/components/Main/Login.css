@@ -1,0 +1,9 @@
+footer p {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: bold;
+    margin: 0;
+}

@@ -1,3 +1,4 @@
+import './Login.css'
 import { useState, useEffect, useContext } from "react";
 import { getUsers } from "../../axios";
 import { UserContext } from "../../UserContext";
@@ -13,10 +14,11 @@ export default function Login({setCurrentUser}) {
         })
     }, [])
 
-    return <main>
+    return <><main>
         {isLoading ? <div id="preloader"><div id="loader"></div></div> : users.map(currUser => {
             return <UserCard key={currUser.username} user={currUser}/>
         })}
-
     </main>
+    <footer><p>Choose your fighter...</p></footer>
+    </>
 }

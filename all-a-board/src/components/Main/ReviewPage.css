@@ -12,8 +12,12 @@ article {
     margin-left: 1rem;
 }
 
+.err-message {
+  margin-top: 0;
+}
+
 .comment-button {
-  background-color: transparent;
+  background-color: whitesmoke;
   border: 2px solid #1A1A1A;
   border-radius: 15px;
   box-sizing: border-box;
@@ -31,7 +35,7 @@ article {
   touch-action: manipulation;
   width: 100%;
   margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .comment-button:hover {
@@ -52,4 +56,25 @@ article {
 
 .awaiting-response-input {
   background-color: rgba(128, 128, 128, 0.303);
+}
+
+.comment-form {
+  margin-right: calc(-1 * (100vw - 100%))
+}
+
+.comment-form textarea {
+  height: 3rem;
+  width: 80vw;
+}
+
+@media screen and (min-width: 600px) {
+  .comment-form textarea {
+    width: 50vw;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .comment-form textarea {
+    width: 30vw;
+  }
 }
