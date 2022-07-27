@@ -8,7 +8,7 @@ import NavBar from './NavBar'
 export default function Main({currentPage}) {
     const [reviews, setReviews] = useState([])
     const [sortBy, setSortBy] = useState()
-    const [order, setOrder] = useState()
+    const [order, setOrder] = useState(false)
     const [categories, setCategories] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -22,12 +22,16 @@ export default function Main({currentPage}) {
     }, [])
   
     useEffect(() => {
-        getReviews(currentPage, category, sortBy, order).then(({data}) => setReviews(data))
+        setIsLoading(true)
+        getReviews(currentPage, category, sortBy, order).then(({data}) => {
+            setReviews(data)
+            setIsLoading(false)
+        })
     }, [currentPage, category, sortBy, order])
 
     return !isLoading ? <main>
         <nav>
-            <NavBar>
+            <NavBar setSortBy={setSortBy} order={order} setOrder={setOrder}>
                 <li value=''><Link to={`../reviews`} replace>all</Link></li>
                 {categories.map((category) => {
                     return <li key={`${category.slug}-1`} value={category.slug}><Link to={`../reviews/${category.slug}`} replace>{category.slug}</Link></li>
