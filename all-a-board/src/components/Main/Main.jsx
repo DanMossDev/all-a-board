@@ -7,8 +7,6 @@ import NavBar from './NavBar'
 
 export default function Main({currentPage}) {
     const [params] = useSearchParams()
-    const order = params.get('order')
-    const sort_by = params.get('sort_by')
 
     const [reviews, setReviews] = useState([])
     const [categories, setCategories] = useState([])
@@ -25,12 +23,14 @@ export default function Main({currentPage}) {
     }, [])
   
     useEffect(() => {
+        const order = params.get('order')
+        const sort_by = params.get('sort_by')
         setIsLoading(true)
         getReviews(currentPage, category, sort_by, order).then(({data}) => {
             setReviews(data)
             setIsLoading(false)
         })
-    }, [currentPage, category, sort_by, order])
+    }, [currentPage, category, params])
 
     return<main>
         <nav>
