@@ -1,11 +1,11 @@
 import './Main.css'
 import {useState, useEffect} from 'react'
 import { useParams, useSearchParams, Link, Navigate } from 'react-router-dom'
-import { getCategories, getReviews } from '../../axios'
+import { getCategories, getReviews, getNumOfPages } from '../../axios'
 import ReviewCard from './ReviewCard'
 import NavBar from './NavBar'
 
-export default function Main({currentPage}) {
+export default function Main({currentPage, setNumOfPages, setCurrentPage}) {
     const [params] = useSearchParams()
 
     const [reviews, setReviews] = useState([])
@@ -21,7 +21,12 @@ export default function Main({currentPage}) {
             setIsLoading(false)
         })
     }, [])
-  
+
+    useEffect(() => {
+        setCurrentPage(1)
+        getNumOfPages(category).then(numPages => setNumOfPages(numPages))   
+    }, [category])
+
     useEffect(() => {
         const order = params.get('order')
         const sort_by = params.get('sort_by')
@@ -31,6 +36,8 @@ export default function Main({currentPage}) {
             setIsLoading(false)
         })
     }, [currentPage, category, params])
+
+    
 
     return<main>
         <nav>

@@ -12,6 +12,14 @@ export function getCategories() {
     return api.get('categories')
 }
 
+export function getNumOfPages(category) {
+    return api.get('reviews', {
+        params: {
+            category
+        }
+    }).then(({data}) => Math.ceil(data.length / 3))
+}
+
 export function getReviews(currentPage, category, sort_by, order) {
     return api.get('reviews', {
         params: {

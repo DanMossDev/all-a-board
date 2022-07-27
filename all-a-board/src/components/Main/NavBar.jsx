@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom"
 
@@ -14,12 +13,11 @@ export default function NavBar({children}) {
         if (!newParams.order) delete newParams.order
         newParams.sort_by = e.target.value
         setSearchParams(newParams)
-        console.log(JSON.stringify(newParams))
     }
 
     return <section>
         <ul>{!isOpen && <div>
-            <select onChange={handleSort} value={searchParams.get('sort_by')}>
+            <select onChange={handleSort} value={searchParams.get('sort_by') ? searchParams.get('sort_by') : ''}>
                 <option value="created_at">Age</option>
                 <option value="votes">Votes</option>
                 <option value="title">Name</option>

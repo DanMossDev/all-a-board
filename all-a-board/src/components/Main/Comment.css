@@ -12,12 +12,12 @@
     margin-top: 2rem;
 }
 
-hr {
-    margin-top: 2rem;
+.comment div {
+    margin: auto;
 }
 
-.comment div p {
-    text-align: center !important;
+hr {
+    margin-top: 2rem;
 }
 
 @media screen and (min-width: 1200px) {
