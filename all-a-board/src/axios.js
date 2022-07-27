@@ -13,7 +13,6 @@ export function getCategories() {
 }
 
 export function getReviews(currentPage, category, sort_by, order) {
-    order = order ? 'asc' : 'desc'
     return api.get('reviews', {
         params: {
             limit: 3,
