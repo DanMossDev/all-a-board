@@ -20,6 +20,21 @@ nav ul {
     align-items: center;
 }
 
+nav div select {
+    height: 2rem;
+    text-align: center;
+}
+
+nav div button {
+    height: 2rem;
+    width: 2rem;
+    background-color: #3AB4F2;
+    color: #F2DF3A;
+    cursor: pointer;
+    font-size: 1rem;
+    text-shadow: 1px 1px 1px black;
+}
+
 li a {
     text-decoration: none;
     color: #3AB4F2
@@ -54,6 +69,10 @@ li a:hover {
     nav ul li {
         background-color: #F2DF3A;
         width: 15rem;
+    }
+    nav div {
+        position: absolute;
+        left: 1rem;
     }
 }
 

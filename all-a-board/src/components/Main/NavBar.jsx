@@ -18,8 +18,8 @@ export default function NavBar({children}) {
     }
 
     return <section>
-        <ul>{!isOpen && <>
-                <select onChange={handleSort} value={searchParams.get('sort_by')}>
+        <ul>{!isOpen && <div>
+            <select onChange={handleSort} value={searchParams.get('sort_by')}>
                 <option value="created_at">Age</option>
                 <option value="votes">Votes</option>
                 <option value="title">Name</option>
@@ -33,7 +33,7 @@ export default function NavBar({children}) {
                 setSearchParams(newParams)
                 setOrder(!order)
             }}>{order ? '↑' : '↓'}</button>
-            </>}
+            </div>}
             {isOpen && children}
             <li onClick={() => {setIsOpen(!isOpen)}}>{isOpen ? "close" : "Pick A Category"}</li>
         </ul>
