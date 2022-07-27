@@ -22,15 +22,18 @@ export default function Main({currentPage}) {
     }, [])
   
     useEffect(() => {
-        getReviews(currentPage, category, sortBy, order).then(({data}) => setReviews(data))
+        getReviews(currentPage, category, sortBy, order).then(({data}) => {
+            setReviews(data)
+            setIsLoading(false)
+        })
     }, [currentPage, category, sortBy, order])
 
     return !isLoading ? <main>
         <nav>
             <NavBar>
-                <li value=''><Link to={`../reviews`} replace>all</Link></li>
+                <li value=''><Link onClick={() => setIsLoading(true)} to={`../reviews`} replace>all</Link></li>
                 {categories.map((category) => {
-                    return <li key={`${category.slug}-1`} value={category.slug}><Link to={`../reviews/${category.slug}`} replace>{category.slug}</Link></li>
+                    return <li key={`${category.slug}-1`} value={category.slug}><Link onClick={() => setIsLoading(true)} to={`../reviews/${category.slug}`} replace>{category.slug}</Link></li>
                 })}
             </NavBar>
         </nav>

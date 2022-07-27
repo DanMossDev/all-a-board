@@ -13,7 +13,6 @@ article {
 }
 
 .comment-button {
-    appearance: none;
     background-color: transparent;
     border: 2px solid #1A1A1A;
     border-radius: 15px;
@@ -31,7 +30,8 @@ article {
     -webkit-user-select: none;
     touch-action: manipulation;
     width: 100%;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
   }
   
   .comment-button:hover {
