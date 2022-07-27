@@ -9,6 +9,11 @@
     text-align: center;
     width: 80%;
     margin: auto;
+    margin-top: 2rem;
+}
+
+hr {
+    margin-top: 2rem;
 }
 
 .comment div p {

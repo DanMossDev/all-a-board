@@ -31,10 +31,10 @@ export default function Main({currentPage}) {
 
     return !isLoading ? <main>
         <nav>
-            <NavBar setSortBy={setSortBy} order={order} setOrder={setOrder}>
-                <li value=''><Link to={`../reviews`} replace>all</Link></li>
+            <NavBar>
+                <li value=''><Link onClick={() => setIsLoading(true)} to={`../reviews`} replace>all</Link></li>
                 {categories.map((category) => {
-                    return <li key={`${category.slug}-1`} value={category.slug}><Link to={`../reviews/${category.slug}`} replace>{category.slug}</Link></li>
+                    return <li key={`${category.slug}-1`} value={category.slug}><Link onClick={() => setIsLoading(true)} to={`../reviews/${category.slug}`} replace>{category.slug}</Link></li>
                 })}
             </NavBar>
         </nav>
