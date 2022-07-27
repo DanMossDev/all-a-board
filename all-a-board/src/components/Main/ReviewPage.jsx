@@ -3,43 +3,41 @@ import ReviewCard from "./ReviewCard";
 import VoteBox from './VoteBox';
 import Comment from './Comment';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getReview, getComments } from '../../axios';
+import { useState, useContext, Fragment } from 'react';
+import { UserContext } from '../../UserContext';
+import { useRenderReview } from '../../hooks/UseRenderReview';
+import { postComment } from '../../axios';
 
 export default function ReviewPage() {
-    const [review, setReview] = useState()
-    const [showComments, setShowComments] = useState(false)
-    const [comments, setComments] = useState([])
-    const [isErr, setIsErr] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
+    const {user} = useContext(UserContext)
     const {review_id} = useParams()
-
-    useEffect(() => {
-        getReview(review_id)
-        .then(({data}) => setReview(data))
-        .catch(err => setIsErr(err))
-    }, [])
-
-    useEffect(() => {
-        if (showComments) {
-            setIsLoading(true)
-            getComments(review_id)
-            .then(({data}) => {
-                setComments(data.comments)
-                setIsLoading(false)
-            })
-            .catch(err => {
-                setIsErr(err)
-                setIsLoading(false)
-            })
-        }
-    }, [showComments])
+    const [showComments, setShowComments] = useState(false)
+    
+    const [newComment, setNewComment] = useState('')
+    const [isSendingComment, setIsSendingComment] = useState(false)
+    const [commentErr, setCommentErr] = useState('')
+    const { review, comments, isLoading, isErr } = useRenderReview(review_id, showComments, isSendingComment)
 
 
+    function handleNewComment(e) {
+        e.preventDefault()
+        setCommentErr('')
+        if (!user) return setCommentErr("Please log in before commenting")
+        if (newComment.length === 0) return setCommentErr("Please enter a comment")
+        setIsSendingComment(true)
+        postComment(newComment, review_id, user.username)
+        .then(() => {
+            setIsSendingComment(false)
+        })
+        .catch(err => {
+            setIsSendingComment(false)
+            setCommentErr("Sorry, something went wrong. Try again!")
+        })
+    }
 
-    return <main> { isLoading? <main><div id="preloader"><div id="loader"></div></div></main> 
-        : isErr ? <h2>{isErr.response.data.msg}</h2> : !showComments ?
-            review &&
+    return <main> { isLoading ? <main><div id="preloader"><div id="loader"></div></div></main>
+        : isErr ? <h2>{isErr.response.data.msg}</h2> 
+        : !showComments ? review && //if it isn't loading, isn't in error, and isn't showing comments then load this
             <div className="individual-card">
             <ReviewCard key={review.review_id} title={review.title} imageURL={review.review_img_url} category={review.category} author={review.owner}>
                 <VoteBox currentVotes={review.votes} id={review.review_id} target="reviews"/>
@@ -47,14 +45,21 @@ export default function ReviewPage() {
             <article>
                 {review.review_body}
             </article>
-            </div> :
+            </div> 
+        : <>
             <section className="comments-box">
                 {comments.length > 0 ? comments.map(comment => {
-                    return <Comment key={comment.comment_id} comment={comment} review_id={review.review_id} />
+                    return <Fragment key={comment.comment_id}><Comment comment={comment} review_id={review.review_id} /><hr/></Fragment>
                 })
                 : <h2>No comments! Will you be the first?</h2>}
             </section>
-            }
+            <form onSubmit={handleNewComment}>
+                <input className={isSendingComment ? "awaiting-response-input" : ''} value={newComment} onChange={e => setNewComment(e.target.value)} type="text"></input><br/>
+                <button className={isSendingComment ? "awaiting-response-button" : ''} type="submit">Comment</button>
+            </form>
+            <p>{commentErr}</p>
+          </>
+        }
         <button className="comment-button" onClick={() => setShowComments(!showComments)}>{showComments ? "Hide Comments" : "Show Comments"}</button>
     </main>
 }
