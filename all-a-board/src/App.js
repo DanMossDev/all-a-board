@@ -7,26 +7,28 @@ import Main from './components/Main/Main'
 import ReviewPage from './components/Main/ReviewPage'
 import Footer from './components/Footer/Footer'
 import Login from './components/Main/Login'
+import { UserContext } from './UserContext'
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1) 
   const [selectedReview, setSelectedReview] = useState()
-  const [currentUser, setCurrentUser] = useState()
+  const [user, setUser] = useState()
 
   return (
     <BrowserRouter>
-    <div className="App">
-      <Header/>
-      <Routes>
-        <Route path='/' element={currentUser ? <Navigate to='/reviews' replace/> : <Navigate to='/login' replace/>}/>
-        <Route path='/reviews' element={<Main currentPage={currentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview}/>}/>
-        <Route path='/reviews/:category' element={<Main currentPage={currentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview}/>}/>
-        <Route path='/review/:review_id' element={<ReviewPage selectedReview={selectedReview}/>}/>
-        <Route path='/login' element={<Login setCurrentUser={setCurrentUser}/>}/>
-        
-      </Routes>
-      <Footer />
-    </div>
+      <UserContext.Provider value={{user, setUser}}>
+        <div className="App">
+          <Header/>
+          <Routes>
+            <Route path='/' element={user ? <Navigate to='/reviews' replace/> : <Navigate to='/login' replace/>}/>
+            <Route path='/reviews' element={<Main currentPage={currentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview}/>}/>
+            <Route path='/reviews/:category' element={<Main currentPage={currentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview}/>}/>
+            <Route path='/review/:review_id' element={<ReviewPage selectedReview={selectedReview}/>}/>
+            <Route path='/login' element={<Login />}/>
+          </Routes>
+          <Footer />
+        </div>
+      </UserContext.Provider>
     </BrowserRouter>
   );
 }

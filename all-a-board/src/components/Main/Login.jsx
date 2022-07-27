@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getUsers } from "../../axios";
+import { UserContext } from "../../UserContext";
 import UserCard from "./UserCard";
 
 export default function Login({setCurrentUser}) {
@@ -14,7 +15,7 @@ export default function Login({setCurrentUser}) {
 
     return <main>
         {isLoading ? <div id="preloader"><div id="loader"></div></div> : users.map(currUser => {
-            return <UserCard key={currUser.username} user={currUser} setCurrentUser={setCurrentUser}/>
+            return <UserCard key={currUser.username} user={currUser}/>
         })}
 
     </main>

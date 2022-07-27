@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getReview, getComments } from '../axios';
 
-export const useRenderReview = (review_id, showComments) => {
+export const useRenderReview = (review_id, showComments, isSendingComment) => {
     const [review, setReview] = useState()
     const [comments, setComments] = useState([])
     const [isErr, setIsErr] = useState(false)
@@ -23,7 +23,7 @@ export const useRenderReview = (review_id, showComments) => {
     }, [showComments])
 
     useEffect(() => {
-        if (showComments) {
+        if (showComments && !isSendingComment) {
             setIsLoading(true)
             getComments(review_id)
             .then(({data}) => {
@@ -35,7 +35,7 @@ export const useRenderReview = (review_id, showComments) => {
                 setIsLoading(false)
             })
         }
-    }, [showComments])
+    }, [showComments, isSendingComment])
 
     return {review, comments, isErr, isLoading}
 }

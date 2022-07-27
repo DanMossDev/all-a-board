@@ -35,3 +35,10 @@ export function getReview(review_id) {
 export function getComments(review_id) {
     return api.get(`reviews/${review_id}/comments`)
 }
+
+export function postComment(comment, review_id, username) {
+    return api.post(`reviews/${review_id}/comments`, {
+        username,
+        body: comment
+    })
+}

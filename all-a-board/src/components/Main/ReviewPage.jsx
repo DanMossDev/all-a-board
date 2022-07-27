@@ -3,14 +3,37 @@ import ReviewCard from "./ReviewCard";
 import VoteBox from './VoteBox';
 import Comment from './Comment';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext, Fragment } from 'react';
+import { UserContext } from '../../UserContext';
 import { useRenderReview } from '../../hooks/UseRenderReview';
+import { postComment } from '../../axios';
 
 export default function ReviewPage() {
-    const [showComments, setShowComments] = useState(false)
+    const {user} = useContext(UserContext)
     const {review_id} = useParams()
+    const [showComments, setShowComments] = useState(false)
+    const { review, comments, isLoading, isErr } = useRenderReview(review_id, showComments, isSendingComment)
+    
+    const [newComment, setNewComment] = useState('')
+    const [isSendingComment, setIsSendingComment] = useState(false)
+    const [commentErr, setCommentErr] = useState('')
 
-    const { review, comments, isLoading, isErr } = useRenderReview(review_id, showComments)
+
+    function handleNewComment(e) {
+        e.preventDefault()
+        setCommentErr('')
+        if (!user) return setCommentErr("Please log in before commenting")
+        if (newComment.length === 0) return setCommentErr("Please enter a comment")
+        setIsSendingComment(true)
+        postComment(newComment, review_id, user.username)
+        .then(() => {
+            setIsSendingComment(false)
+        })
+        .catch(err => {
+            setIsSendingComment(false)
+            setCommentErr("Sorry, something went wrong. Try again!")
+        })
+    }
 
     return <main> { isLoading ? <main><div id="preloader"><div id="loader"></div></div></main>
         : isErr ? <h2>{isErr.response.data.msg}</h2> 
@@ -22,17 +45,21 @@ export default function ReviewPage() {
             <article>
                 {review.review_body}
             </article>
-            </div> : //if it isn't loading, isn't in error, and IS showing comments then load this
-            <>
+            </div> 
+        : <>
             <section className="comments-box">
                 {comments.length > 0 ? comments.map(comment => {
-                    return <><Comment key={comment.comment_id} comment={comment} review_id={review.review_id} /><hr/></>
+                    return <Fragment key={comment.comment_id}><Comment comment={comment} review_id={review.review_id} /><hr/></Fragment>
                 })
                 : <h2>No comments! Will you be the first?</h2>}
             </section>
-            
+            <form onSubmit={handleNewComment}>
+                <input className={isSendingComment ? "awaiting-response-input" : ''} value={newComment} onChange={e => setNewComment(e.target.value)} type="text"></input><br/>
+                <button className={isSendingComment ? "awaiting-response-button" : ''} type="submit">Comment</button>
+            </form>
+            <p>{commentErr}</p>
             </>
-            }
+        }
         <button className="comment-button" onClick={() => setShowComments(!showComments)}>{showComments ? "Hide Comments" : "Show Comments"}</button>
     </main>
 }
