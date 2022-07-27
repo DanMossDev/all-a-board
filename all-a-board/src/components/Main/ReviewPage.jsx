@@ -12,11 +12,11 @@ export default function ReviewPage() {
     const {user} = useContext(UserContext)
     const {review_id} = useParams()
     const [showComments, setShowComments] = useState(false)
-    const { review, comments, isLoading, isErr } = useRenderReview(review_id, showComments, isSendingComment)
     
     const [newComment, setNewComment] = useState('')
     const [isSendingComment, setIsSendingComment] = useState(false)
     const [commentErr, setCommentErr] = useState('')
+    const { review, comments, isLoading, isErr } = useRenderReview(review_id, showComments, isSendingComment)
 
 
     function handleNewComment(e) {
