@@ -1,3 +1,7 @@
+.hidden {
+    visibility: hidden;
+}
+
 .comment-button {
     width: 100px;
 }
