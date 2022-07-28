@@ -25,12 +25,20 @@
     margin-top: 2rem;
 }
 
+.comment h2 {
+    margin-top: 0;
+}
+
 .comment div {
     margin: auto;
 }
 
 hr {
     margin-top: 2rem;
+}
+.comment-body {
+    max-width: 90%;
+    margin: auto;
 }
 
 .remove-comment {

@@ -16,7 +16,7 @@ export default function Comment({comment, review_id, setIsSendingComment}) {
         <div>
             <p className="cannot-delete"><em>{cannotDelete}</em></p>
             <h2>{author}</h2>
-            <p>{isDeleting ? "comment being removed..." : body}</p>
+            <p className="comment-body">{isDeleting ? "comment being removed..." : body}</p>
         </div>
         
         <button onClick={() => {
