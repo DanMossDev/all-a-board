@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# <center>All A-Board</center>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Intro
+This is a full stack web app developed as part of my time studying at Northcoders. The back end is hosted via Heroku [here](https://beegee-api.herokuapp.com/) and the front end is live [here](https://danmossdev.github.io/all-a-board).
 
-## Available Scripts
+The backend uses Node.js, Express, and PostgreSQL to seed, store, and dispense data based on a variety of requests which can be seen at the /api endpoint. The front end is built with React and CSS and aims to provide a fully responsive, accessible, and user friendly experience, making use of React Router, custom hooks, optimistic rendering with user feedback, media queries and semantic HTML to achieve this.
 
-In the project directory, you can run:
+## What Actually Is It?
+All A-Board is a site on which users can see reviews for various board games, leave comments on these reviews and up/down vote them. In practise, there is no functionality to create a user (yet), nor to post a review; however it was constructed to satisfy user stories provided as part of the assignment. As of right now, users are prompted to select an existing user and can then navigate throughout the existing reviews, from there they can vote on reviews, vote on comments, post new comments and delete any comments posted by themselves.
 
-### `npm start`
+## Some techincal stuff
+The backend was constructed using the MVC pattern, and built according to test driven principles using Jest and Supertest. Git source control was used to create branches and implement new features before having them signed off on by tutors and merged into the development build.
+Built with Node version v16.15.1 in mind, should you want to use the project yourself simply clone this project to your system:
+```
+git clone https://github.com/DanMossDev/all-a-board.git
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+install dependencies using:
+```
+npm install
+```
+Host the project locally using:
+```
+npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+If you want to access or modify the back end in any way, it can be accessed [here](https://github.com/DanMossDev/board-game-api) and hosted however you see fit; I personally recommend Heroku - further instructions available in that repo's README.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thanks!
