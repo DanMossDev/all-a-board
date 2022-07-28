@@ -1,3 +1,16 @@
+.hidden {
+    visibility: hidden;
+}
+
+.cannot-delete {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .comment-button {
     width: 100px;
 }
@@ -18,6 +31,39 @@
 
 hr {
     margin-top: 2rem;
+}
+
+.remove-comment {
+    align-self: flex-start;
+    background-color: transparent;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    line-height: normal;
+    outline: none;
+    padding: 1vh 1vw;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.remove-comment:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.remove-comment:active {
+    box-shadow: none;
+    transform: translateY(0);
 }
 
 @media screen and (min-width: 1200px) {

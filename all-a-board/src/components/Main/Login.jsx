@@ -1,7 +1,6 @@
 import './Login.css'
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { getUsers } from "../../axios";
-import { UserContext } from "../../UserContext";
 import UserCard from "./UserCard";
 
 export default function Login({setCurrentUser}) {
