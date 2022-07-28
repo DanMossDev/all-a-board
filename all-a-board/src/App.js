@@ -8,6 +8,7 @@ import ReviewPage from './components/Main/ReviewPage'
 import Footer from './components/Footer/Footer'
 import Login from './components/Main/Login'
 import { UserContext } from './UserContext'
+import ErrorPage from './components/Main/ErrorPage'
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1) 
@@ -26,6 +27,7 @@ function App() {
             <Route path='/reviews/:category' element={<><Main currentPage={currentPage} setCurrentPage={setCurrentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview} setNumOfPages={setNumOfPages}/><Footer currentPage={currentPage} numOfPages={numOfPages} setCurrentPage={setCurrentPage}/></>}/>
             <Route path='/review/:review_id' element={<ReviewPage selectedReview={selectedReview}/>}/>
             <Route path='/login' element={<Login />}/>
+            <Route path='*' element={<ErrorPage />}/>
           </Routes>
         </div>
       </UserContext.Provider>

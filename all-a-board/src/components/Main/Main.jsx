@@ -1,13 +1,13 @@
 import './Main.css'
 import {useState, useEffect} from 'react'
-import { useParams, useSearchParams, Link } from 'react-router-dom'
+import { useParams, useSearchParams, Link, useNavigate } from 'react-router-dom'
 import { getCategories, getReviews, getNumOfPages } from '../../axios'
 import ReviewCard from './ReviewCard'
 import NavBar from './NavBar'
 
 export default function Main({currentPage, setNumOfPages, setCurrentPage}) {
+    const navigate = useNavigate()
     const [params] = useSearchParams()
-
     const [reviews, setReviews] = useState([])
     const [categories, setCategories] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -28,8 +28,14 @@ export default function Main({currentPage, setNumOfPages, setCurrentPage}) {
     }, [category])
 
     useEffect(() => {
+        const validSorts = ['created_at', 'votes', 'title', 'comment_count']
+        const validCategories = categories.map(cat => cat.slug)
         const order = params.get('order')
         const sort_by = params.get('sort_by')
+
+        if (category && !validCategories.includes(category)) navigate(`/error`, {replace: true})
+        if (sort_by && !validSorts.includes(sort_by)) return navigate(`/error`, {replace: true})
+
         setIsLoading(true)
         getReviews(currentPage, category, sort_by, order).then(({data}) => {
             setReviews(data)
