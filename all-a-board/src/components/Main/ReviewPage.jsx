@@ -50,7 +50,7 @@ export default function ReviewPage() {
         : <>
             <section className="comments-box">
                 {comments.length > 0 ? comments.map(comment => {
-                    return <Fragment key={comment.comment_id}><Comment comment={comment} review_id={review.review_id} /><hr/></Fragment>
+                    return <Fragment key={comment.comment_id}><Comment comment={comment} review_id={review.review_id} setIsSendingComment={setIsSendingComment} /><hr/></Fragment>
                 })
                 : <h2>No comments! Will you be the first?</h2>}
             </section>

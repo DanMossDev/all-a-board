@@ -1,6 +1,6 @@
 import './Main.css'
 import {useState, useEffect} from 'react'
-import { useParams, useSearchParams, Link, Navigate } from 'react-router-dom'
+import { useParams, useSearchParams, Link } from 'react-router-dom'
 import { getCategories, getReviews, getNumOfPages } from '../../axios'
 import ReviewCard from './ReviewCard'
 import NavBar from './NavBar'
@@ -37,14 +37,17 @@ export default function Main({currentPage, setNumOfPages, setCurrentPage}) {
         })
     }, [currentPage, category, params])
 
-    
+    function handleCategoryChange(e) {
+        e.target.href.split('/')[4] !== category && setIsLoading(true)
+    }
+
 
     return<main>
         <nav>
             <NavBar>
-                <li value=''><Link onClick={() => setIsLoading(true)} to={`../reviews`} replace>all</Link></li>
-                {categories.map((category) => {
-                    return <li key={`${category.slug}-1`} value={category.slug}><Link onClick={() => setIsLoading(true)} to={`../reviews/${category.slug}`} replace>{category.slug}</Link></li>
+                <li value=''><Link onClick={handleCategoryChange} to={`../reviews`} replace>all</Link></li>
+                {categories.map((currCategory) => {
+                    return <li key={`${currCategory.slug}-1`} value={currCategory.slug}><Link onClick={handleCategoryChange} to={`../reviews/${currCategory.slug}`} replace>{currCategory.slug}</Link></li>
                 })}
             </NavBar>
         </nav>

@@ -50,3 +50,7 @@ export function postComment(comment, review_id, username) {
         body: comment
     })
 }
+
+export function deleteComment(comment_id) {
+    return api.delete(`comments/${comment_id}`)
+}
