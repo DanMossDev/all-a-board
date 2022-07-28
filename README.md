@@ -1,55 +1,29 @@
-# Northcoders Games
+# <center>All A-Board</center>
 
-Northcoders Games is a social games content rating, and discussion website.
+## Intro
+This is a full stack web app developed as part of my time studying at Northcoders. The back end is hosted via Heroku [here](https://beegee-api.herokuapp.com/) and the front end is live [here](https://danmossdev.github.io/all-a-board).
 
-Northcoders Games has game reviews which are divided into categories. Each review has user curated ratings and can be up or down voted using the API. Users can also add comments about an review. Users can also add comments about a review.
+The backend uses Node.js, Express, and PostgreSQL to seed, store, and dispense data based on a variety of requests which can be seen at the /api endpoint. The front end is built with React and CSS and aims to provide a fully responsive, accessible, and user friendly experience, making use of React Router, custom hooks, optimistic rendering with user feedback, media queries and semantic HTML to achieve this.
 
-This sprint should consolidate your understanding of making a [C.R.U.D](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) application from a front end perspective.
+## What Actually Is It?
+All A-Board is a site on which users can see reviews for various board games, leave comments on these reviews and up/down vote them. In practise, there is no functionality to create a user (yet), nor to post a review; however it was constructed to satisfy user stories provided as part of the assignment. As of right now, users are prompted to select an existing user and can then navigate throughout the existing reviews, from there they can vote on reviews, vote on comments, post new comments and delete any comments posted by themselves.
 
-## Kanban
-
-### Link to your Trello Board here: https://trello.com/b/HDWmbjGM/fe-nc-games
-
-To keep track of the tasks involved in this project we're going to use a kanban board. Ensure that you work on one _ticket_ at time. You can click on the ticket to find out more information about what is required for the feature. A ticket is not considered complete unless both the happy path and errors response are handled and there is a basic structure to your styling.
-
-**We suggest you work through the tickets from top to bottom.**
-
-## Git Branching and Pull Requests
-
-You will be working on each ticket on a new **branch**.
-
-To create and switch to a new git branch use the command:
-
+## Some techincal stuff
+The backend was constructed using the MVC pattern, and built according to test driven principles using Jest and Supertest. Git source control was used to create branches and implement new features before having them signed off on by tutors and merged into the development build.
+Built with Node version v16.15.1 in mind, should you want to use the project yourself simply clone this project to your system:
 ```
-git checkout -b <new branch name>
+git clone https://github.com/DanMossDev/all-a-board.git
 ```
 
-This will create a branch and move over to that branch. (Omit the `-b` flag if you wish to switch to an already existing branch).
-
-We recommend that you name the branch something that clearly shows the ticket you are working on. eg. `fe-ncnews-display-reviews`
-
-When pushing the branch to git hub ensure that you make reference to the branch you are pushing to on the remote.
-
+install dependencies using:
 ```
-git push origin <branch name>
+npm install
 ```
-
-From github you can make a pull request and share the link and ticket number on your `nchelp` with a zoom link for you to demo your feature. A tutor will swing by to review your code. Ensure that you keep your trello up to date whilst you await the PR approval.
-
-Once a pull request been accepted be sure to switch back to the main branch and pull down the updated changes.
-
+Host the project locally using:
 ```
-git checkout main
-
-git pull origin main
+npm start
 ```
 
-You can tidy up your local branches once they have been pull into main by deleting them:
+If you want to access or modify the back end in any way, it can be accessed [here](https://github.com/DanMossDev/board-game-api) and hosted however you see fit; I personally recommend Heroku - further instructions available in that repo's README.
 
-```
-git branch -D <local branch>
-```
-
-## Important
-
-This sprint is among the ones we'll ask you to complete in order to put you forward for jobs. Put a little bit of love into it! :) <3
+Thanks!
