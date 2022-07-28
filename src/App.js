@@ -22,12 +22,12 @@ function App() {
         <div className="App">
           <Header/>
           <Routes>
-            <Route path='/' element={user ? <Navigate to='/reviews' replace/> : <Navigate to='/login' replace/>}/>
-            <Route path='/reviews' element={<><Main currentPage={currentPage} setCurrentPage={setCurrentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview} setNumOfPages={setNumOfPages}/><Footer currentPage={currentPage} numOfPages={numOfPages} setCurrentPage={setCurrentPage}/></>}/>
-            <Route path='/reviews/:category' element={<><Main currentPage={currentPage} setCurrentPage={setCurrentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview} setNumOfPages={setNumOfPages}/><Footer currentPage={currentPage} numOfPages={numOfPages} setCurrentPage={setCurrentPage}/></>}/>
-            <Route path='/review/:review_id' element={<ReviewPage selectedReview={selectedReview}/>}/>
-            <Route path='/login' element={<Login />}/>
-            <Route path='*' element={<ErrorPage />}/>
+            <Route path='/all-a-board/' element={user ? <Navigate to='/all-a-board/reviews' replace/> : <Navigate to='/all-a-board/login' replace/>}/>
+            <Route path='/all-a-board/reviews' element={<><Main currentPage={currentPage} setCurrentPage={setCurrentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview} setNumOfPages={setNumOfPages}/><Footer currentPage={currentPage} numOfPages={numOfPages} setCurrentPage={setCurrentPage}/></>}/>
+            <Route path='/all-a-board/reviews/:category' element={<><Main currentPage={currentPage} setCurrentPage={setCurrentPage} selectedReview={selectedReview} setSelectedReview={setSelectedReview} setNumOfPages={setNumOfPages}/><Footer currentPage={currentPage} numOfPages={numOfPages} setCurrentPage={setCurrentPage}/></>}/>
+            <Route path='/all-a-board/review/:review_id' element={<ReviewPage selectedReview={selectedReview}/>}/>
+            <Route path='/all-a-board/login' element={<Login />}/>
+            <Route path='/all-a-board/*' element={<ErrorPage />}/>
           </Routes>
         </div>
       </UserContext.Provider>

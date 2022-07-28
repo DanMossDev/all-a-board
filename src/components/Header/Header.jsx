@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
 
 export default function Header() {
-    return <header><h1><Link to='../' replace>All A-Board</Link></h1></header>
+    return <header><h1><Link to='../all-a-board/' replace>All A-Board</Link></h1></header>
 }

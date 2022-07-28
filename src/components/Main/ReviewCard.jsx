@@ -4,7 +4,7 @@ import './ReviewCard.css'
 
 export default function ReviewCard({title, imageURL, category, author, isSelector, review, children}) {
     const navigate = useNavigate()
-    return <div className="review-card" onClick={() => isSelector && navigate(`/review/${review.review_id}`, {replace: true})}>
+    return <div className="review-card" onClick={() => isSelector && navigate(`/all-a-board/review/${review.review_id}`, {replace: true})}>
         <img src={imageURL}/>
         {children}
         <div className="details">

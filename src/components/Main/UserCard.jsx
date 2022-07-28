@@ -7,7 +7,7 @@ export default function UserCard({user}) {
     const navigate = useNavigate()
     const {setUser} = useContext(UserContext)
     const {username, avatar_url, name} = user
-    return <div className="user-card" onClick={() => {setUser(user); navigate(`../reviews`, {replace: true})}}>
+    return <div className="user-card" onClick={() => {setUser(user); navigate(`../all-a-board/reviews`, {replace: true})}}>
         <img className="avatar"src={avatar_url}/>
         <div className="user-details">
         <h2>{username}</h2>

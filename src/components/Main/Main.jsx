@@ -33,8 +33,8 @@ export default function Main({currentPage, setNumOfPages, setCurrentPage}) {
         const order = params.get('order')
         const sort_by = params.get('sort_by')
 
-        if (category && !validCategories.includes(category)) navigate(`/error`, {replace: true})
-        if (sort_by && !validSorts.includes(sort_by)) return navigate(`/error`, {replace: true})
+        if (category && !validCategories.includes(category)) navigate(`/all-a-board/error`, {replace: true})
+        if (sort_by && !validSorts.includes(sort_by)) return navigate(`/all-a-board/error`, {replace: true})
 
         setIsLoading(true)
         getReviews(currentPage, category, sort_by, order).then(({data}) => {
@@ -44,16 +44,16 @@ export default function Main({currentPage, setNumOfPages, setCurrentPage}) {
     }, [currentPage, category, params])
 
     function handleCategoryChange(e) {
-        e.target.href.split('/')[4] !== category && setIsLoading(true)
+        e.target.href.split('/')[5] !== category && setIsLoading(true)
     }
 
 
     return<main>
         <nav>
             <NavBar>
-                <li value=''><Link onClick={handleCategoryChange} to={`../reviews`} replace>all</Link></li>
+                <li value=''><Link onClick={handleCategoryChange} to={`../all-a-board/reviews`} replace>all</Link></li>
                 {categories.map((currCategory) => {
-                    return <li key={`${currCategory.slug}-1`} value={currCategory.slug}><Link onClick={handleCategoryChange} to={`../reviews/${currCategory.slug}`} replace>{currCategory.slug}</Link></li>
+                    return <li key={`${currCategory.slug}-1`} value={currCategory.slug}><Link onClick={handleCategoryChange} to={`../all-a-board/reviews/${currCategory.slug}`} replace>{currCategory.slug}</Link></li>
                 })}
             </NavBar>
         </nav>
